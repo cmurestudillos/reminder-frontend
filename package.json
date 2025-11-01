@@ -1,0 +1,43 @@
+{
+  "name": "reminder-frontend",
+  "description": "Frontend PWA para Reminder - Gestión de listas y tareas",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@primevue/themes": "^4.4.1",
+    "axios": "^1.12.2",
+    "pinia": "^3.0.3",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.4.1",
+    "vite-plugin-pwa": "^1.1.0",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^61.1.4",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "vite": "^7.1.7"
+  },
+  "keywords": [
+    "vue",
+    "vite",
+    "primevue",
+    "pwa",
+    "reminder",
+    "todo",
+    "tasks"
+  ],
+  "author": "Carlos Mur",
+  "license": "ISC"
+}
