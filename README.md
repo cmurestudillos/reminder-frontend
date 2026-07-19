@@ -16,15 +16,15 @@ Frontend PWA para la aplicación Reminder construido con Vue 3, Vite y PrimeVue.
 
 ### Prerrequisitos
 
-- Node.js 16+ 
-- npm o yarn
+- Node.js ≥20.19
+- pnpm (`corepack enable` o `npm install -g pnpm`)
 - Backend de Reminder ejecutándose en http://localhost:4000
 
 ### Pasos de instalación
 
 1. Instalar dependencias:
 ```bash
-npm install
+pnpm install
 ```
 
 2. Configurar variables de entorno:
@@ -39,7 +39,7 @@ VITE_API_URL=http://localhost:4000/api
 
 3. Iniciar servidor de desarrollo:
 ```bash
-npm run dev
+pnpm dev
 ```
 
 La aplicación estará disponible en http://localhost:3000
@@ -127,16 +127,18 @@ reminder-frontend/
 
 ```bash
 # Desarrollo con hot-reload
-npm run dev
+pnpm dev
 
 # Build para producción
-npm run build
+pnpm build
 
 # Preview del build de producción
-npm run preview
+pnpm preview
 
-# Lint del código
-npm run lint
+# Lint del código / lint con autofix / formateo
+pnpm lint
+pnpm lint:fix
+pnpm format
 ```
 
 ## 🌐 Variables de Entorno
@@ -196,7 +198,7 @@ La aplicación está configurada como PWA y puede:
 ### Build de Producción
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Los archivos optimizados se generarán en la carpeta `dist/`.
@@ -205,7 +207,7 @@ Los archivos optimizados se generarán en la carpeta `dist/`.
 
 1. Conectar repositorio a Netlify
 2. Configurar build:
-   - Build command: `npm run build`
+   - Build command: `pnpm build`
    - Publish directory: `dist`
 3. Configurar variables de entorno en Netlify
 4. Desplegar
@@ -213,7 +215,7 @@ Los archivos optimizados se generarán en la carpeta `dist/`.
 ### Desplegar en Vercel
 
 ```bash
-npm install -g vercel
+pnpm add -g vercel
 vercel
 ```
 

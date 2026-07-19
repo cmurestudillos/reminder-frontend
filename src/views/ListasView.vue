@@ -1,6 +1,6 @@
 <template>
   <div class="listas-view">
-    <Navbar />
+    <AppNavbar />
 
     <div class="container">
       <div class="header">
@@ -80,7 +80,7 @@ import { useRouter } from 'vue-router';
 import { useListasStore } from '@/stores/listas';
 import { useToast } from 'primevue/usetoast';
 import { useConfirm } from 'primevue/useconfirm';
-import Navbar from '@/components/Navbar.vue';
+import AppNavbar from '@/components/AppNavbar.vue';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
@@ -132,6 +132,7 @@ const crearLista = async () => {
     nuevaLista.titulo = '';
     mostrarDialogNueva.value = false;
   } catch (error) {
+    console.error(error);
     toast.add({
       severity: 'error',
       summary: 'Error',
@@ -170,6 +171,7 @@ const actualizarLista = async () => {
     });
     mostrarDialogEditar.value = false;
   } catch (error) {
+    console.error(error);
     toast.add({
       severity: 'error',
       summary: 'Error',
@@ -198,6 +200,7 @@ const confirmarEliminar = lista => {
           life: 3000,
         });
       } catch (error) {
+        console.error(error);
         toast.add({
           severity: 'error',
           summary: 'Error',

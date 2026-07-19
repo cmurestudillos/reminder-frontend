@@ -1,6 +1,6 @@
 <template>
   <div class="lista-detalle-view">
-    <Navbar />
+    <AppNavbar />
 
     <div class="container">
       <div class="header">
@@ -25,9 +25,9 @@
           <template #content>
             <div class="tarea-content">
               <Checkbox
-                :modelValue="tarea.completado"
+                :model-value="tarea.completado"
                 :binary="true"
-                @update:modelValue="valor => toggleTarea(tarea, valor)" />
+                @update:model-value="valor => toggleTarea(tarea, valor)" />
               <div class="tarea-info" :class="{ completada: tarea.completado }">
                 <p>{{ tarea.descripcion }}</p>
               </div>
@@ -94,9 +94,10 @@
 import { ref, reactive, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useTareasStore } from '@/stores/tareas';
+import listasService from '@/services/listasService';
 import { useToast } from 'primevue/usetoast';
 import { useConfirm } from 'primevue/useconfirm';
-import Navbar from '@/components/Navbar.vue';
+import AppNavbar from '@/components/AppNavbar.vue';
 import Card from 'primevue/card';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
@@ -131,9 +132,16 @@ const tareasPendientes = computed(() => {
   return tareasStore.tareas.filter(t => !t.completado).length;
 });
 
-// Cargar tareas al montar el componente
-onMounted(() => {
+// Cargar la lista (para el título) y sus tareas al montar el componente
+onMounted(async () => {
   tareasStore.fetchTareas(listaId);
+
+  try {
+    const lista = await listasService.getLista(listaId);
+    nombreLista.value = lista.titulo;
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 // Crear una nueva tarea
@@ -163,6 +171,7 @@ const crearTarea = async () => {
     nuevaTarea.descripcion = '';
     mostrarDialogNueva.value = false;
   } catch (error) {
+    console.error(error);
     toast.add({
       severity: 'error',
       summary: 'Error',
@@ -205,6 +214,7 @@ const actualizarTarea = async () => {
     });
     mostrarDialogEditar.value = false;
   } catch (error) {
+    console.error(error);
     toast.add({
       severity: 'error',
       summary: 'Error',
@@ -234,6 +244,7 @@ const toggleTarea = async (tarea, nuevoValor) => {
       tarea.completado = tareaActualizada.completado;
     }
   } catch (error) {
+    console.error(error);
     // Revertir el cambio si falla
     tarea.completado = estadoAnterior;
     toast.add({
@@ -264,6 +275,7 @@ const confirmarEliminar = tarea => {
           life: 3000,
         });
       } catch (error) {
+        console.error(error);
         toast.add({
           severity: 'error',
           summary: 'Error',
