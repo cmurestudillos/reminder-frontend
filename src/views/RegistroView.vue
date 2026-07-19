@@ -28,7 +28,7 @@
               id="password"
               v-model="formData.password"
               placeholder="Mínimo 6 caracteres"
-              toggleMask
+              toggle-mask
               :class="{ 'p-invalid': errors.password }"
               required />
             <small v-if="errors.password" class="p-error">{{ errors.password }}</small>
@@ -41,7 +41,7 @@
               v-model="formData.confirmPassword"
               placeholder="Repite tu contraseña"
               :feedback="false"
-              toggleMask
+              toggle-mask
               :class="{ 'p-invalid': errors.confirmPassword }"
               required />
             <small v-if="errors.confirmPassword" class="p-error">{{ errors.confirmPassword }}</small>

@@ -40,6 +40,7 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       user.value = await authService.getAuthUser();
     } catch (error) {
+      console.error(error);
       user.value = null;
       authService.logout();
     }

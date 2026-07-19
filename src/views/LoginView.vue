@@ -29,7 +29,7 @@
               v-model="formData.password"
               placeholder="Tu contraseña"
               :feedback="false"
-              toggleMask
+              toggle-mask
               :class="{ 'p-invalid': errors.password }"
               required />
             <small v-if="errors.password" class="p-error">{{ errors.password }}</small>

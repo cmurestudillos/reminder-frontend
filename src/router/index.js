@@ -43,7 +43,7 @@ const router = createRouter({
 });
 
 // Guard de navegación
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async to => {
   const authStore = useAuthStore();
 
   // Si hay token pero no usuario, verificar primero
@@ -55,16 +55,14 @@ router.beforeEach(async (to, from, next) => {
 
   // Ruta requiere autenticación
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next({ name: 'Login' });
+    return { name: 'Login' };
   }
   // Ruta requiere ser invitado (no autenticado)
-  else if (to.meta.requiresGuest && isAuthenticated) {
-    next({ name: 'Listas' });
+  if (to.meta.requiresGuest && isAuthenticated) {
+    return { name: 'Listas' };
   }
   // Continuar normalmente
-  else {
-    next();
-  }
+  return true;
 });
 
 export default router;
